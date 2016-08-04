@@ -6,9 +6,9 @@ from nltk import sent_tokenize, word_tokenize, pos_tag
 from nltk import RegexpParser
 
 def InfoExtractor(text):
-
-### Regex Expressions ###
-#########################
+	#########################
+	### Regex Expressions ###
+	#########################
 	regex_email = re.compile(r'([a-zA-Z0-9._-]+@[a-zA-z0-9._-]+\.[^\s]*)',re.IGNORECASE | re.UNICODE)
 	regex_phone = re.compile(r'(\d+[\-\+\(]?\d+[\)\-\s]?\d+[\-\s]?\d+)', re.UNICODE)
 
@@ -18,7 +18,6 @@ def InfoExtractor(text):
 						r'November|December))(?:\.|\/|\-|\s)(?:[0-9]{2})?[0-9]{2})',re.IGNORECASE | re.UNICODE)
 	regex_address = re.compile(r'\d{1,3}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}', re.IGNORECASE)
 
-#regex_phone = re.compile(r'\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)$',re.IGNORECASE | re.UNICODE)
 
 	info = dict()
 
@@ -31,15 +30,15 @@ def InfoExtractor(text):
 
 	for exp in regex.keys():
 		info[exp] = regex[exp].findall(text)
-#		print info[exp]
-#		print exp
+		#print info[exp]
+		#print exp
 
-#Filtering phone numbers
+	#Filtering phone numbers
 	info['phone'] = [x for x in info['phone'] if len(x)>5]
-#Filtering the correct date of birth
+	#Filtering the correct date of birth
  	min = '9'
 	for x in info['DOB'] :
-	#	print x[len(x)-2]
+	#print x[len(x)-2]
 		if x[len(x)-2]!='0' and (x[len(x)-2])<min:
 			#print x
 			min=(x[len(x)-2])
@@ -47,6 +46,29 @@ def InfoExtractor(text):
 
 	info['DOB']=correct_DOB
 	return info
+
+def parse_info():
+	pass
+
+def extract_person_name():
+	pass
+
+def extract_person_address():
+	pass
+
+def extract_person_education():
+	pass
+
+def extract_person_skills():
+	pass
+
+
+
+
+
+
+
+
 ######################
 
 

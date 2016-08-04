@@ -2,15 +2,19 @@
 # coding=utf-8
 
 
-from InfoExtractor import InfoExtractor
+from InfoExtractor import regex_info_extractor
 from docParser import DocToText
+import NER
 
 def main():
 	text = DocToText("test.doc")
+
+	x = NER.chunk_NER(text)
+	print x
 	
-	#text = ' This is a healthy cat who is dancing'
-	info = InfoExtractor(text)
-	print info
+	info = regex_info_extractor(text)
+
+	# print info
 
 
 if __name__ == '__main__':
